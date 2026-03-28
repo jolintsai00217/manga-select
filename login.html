@@ -13,7 +13,7 @@
 
     body {
       font-family: "Noto Sans JP", -apple-system, sans-serif;
-      background: #FFFBEB;
+      background: #FAFAFA;
       display: flex; align-items: center; justify-content: center;
       min-height: 100vh;
       -webkit-font-smoothing: antialiased;
@@ -23,7 +23,7 @@
     body::after {
       content: '';
       position: fixed; inset: 0; z-index: 9999;
-      pointer-events: none; opacity: 0.025;
+      pointer-events: none; opacity: 0.015;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
       background-repeat: repeat; background-size: 256px 256px;
     }
@@ -31,7 +31,7 @@
     .card {
       position: relative; z-index: 1;
       background: #FFFFFF;
-      border: 1px solid #FAEEE1;
+      border: 1px solid #E2E8F0;
       border-radius: 4px;
       padding: 48px 40px;
       width: 100%; max-width: 360px;
@@ -41,7 +41,7 @@
     .brand-title {
       font-family: "Shippori Mincho", serif;
       font-size: 24px; font-weight: 800;
-      color: #C23B22;
+      color: #6366F1;
       letter-spacing: -0.02em;
       margin-bottom: 4px;
     }
@@ -52,7 +52,7 @@
     }
     .brand-rule {
       width: 32px; height: 2px;
-      background: #C23B22;
+      background: #6366F1;
       margin: 16px auto 0;
     }
 
@@ -73,23 +73,23 @@
     input {
       width: 100%;
       padding: 12px 14px;
-      border: 1px solid #E8D5C4;
+      border: 1px solid #CBD5E1;
       border-radius: 2px;
       font-size: 14px;
       font-family: "Noto Sans JP", sans-serif;
-      background: #FFFBEB;
+      background: #FAFAFA;
       color: #1E293B;
       outline: none;
       transition: border-color 0.2s;
     }
     input::placeholder { color: #CBD5E1; }
-    input:focus { border-color: #C23B22; }
+    input:focus { border-color: #6366F1; }
 
     button {
       width: 100%;
       padding: 12px;
       background: #1E293B;
-      color: #FFFBEB;
+      color: #FFFFFF;
       border: none;
       border-radius: 2px;
       font-size: 12px; font-weight: 700;
@@ -119,12 +119,12 @@
       transition: color 0.2s;
       letter-spacing: 0.04em;
     }
-    .back-link:hover { color: #C23B22; }
+    .back-link:hover { color: #6366F1; }
 
     .footer-note {
       margin-top: 28px;
       padding-top: 20px;
-      border-top: 1px solid #FAEEE1;
+      border-top: 1px solid #E2E8F0;
       text-align: center;
       font-size: 10px; color: #CBD5E1;
       letter-spacing: 0.12em;
