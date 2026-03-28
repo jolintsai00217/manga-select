@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MANGA SELECT 漫坑選物 — 嚴選好漫畫，快樂入坑</title>
+  <meta name="description" content="精心挑選的漫畫推薦，每本都值得你的時間。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&family=Noto+Serif+TC:wght@600;700;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #FAFAF8;
+      --card: #FFFFFF;
+      --text: #1A1A2E;
+      --text-secondary: #64748B;
+      --text-muted: #94A3B8;
+      --accent: #E63946;
+      --accent-light: rgba(230,57,70,0.08);
+      --border: rgba(0,0,0,0.06);
+      --shadow: 0 2px 12px rgba(0,0,0,0.06);
+      --shadow-hover: 0 8px 32px rgba(0,0,0,0.1);
+      --radius: 16px;
+      --font-sans: "Noto Sans TC", -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-serif: "Noto Serif TC", serif;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+    }
+
+    /* --- NAV --- */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(250,250,248,0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+    }
+    .nav-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 56px;
+    }
+    .nav-brand {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none; color: var(--text);
+    }
+    .nav-logo {
+      width: 32px; height: 32px;
+      background: linear-gradient(135deg, #E63946, #D62839);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 15px; font-weight: 700; color: #fff;
+    }
+    .nav-title {
+      font-family: var(--font-serif);
+      font-size: 15px; font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+    .nav-links { display: flex; gap: 24px; align-items: center; }
+    .nav-links a {
+      font-size: 13px; color: var(--text-secondary);
+      text-decoration: none; font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* --- HERO --- */
+    .hero {
+      text-align: center;
+      padding: 64px 24px 48px;
+      max-width: 720px; margin: 0 auto;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: var(--accent-light);
+      color: var(--accent);
+      font-size: 12px; font-weight: 600;
+      padding: 4px 14px;
+      border-radius: 20px;
+      margin-bottom: 16px;
+      letter-spacing: 0.06em;
+    }
+    .hero h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(32px, 6vw, 48px);
+      font-weight: 900;
+      line-height: 1.2;
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+    .hero h1 span { color: var(--accent); }
+    .hero p {
+      font-size: 16px; color: var(--text-secondary);
+      max-width: 480px; margin: 0 auto;
+    }
+
+    /* --- SECTIONS --- */
+    .section {
+      max-width: 1200px; margin: 0 auto;
+      padding: 48px 24px;
+    }
+    .section-header {
+      display: flex; align-items: baseline; gap: 12px;
+      margin-bottom: 24px;
+    }
+    .section-header h2 {
+      font-family: var(--font-serif);
+      font-size: 22px; font-weight: 700;
+    }
+    .section-header .count {
+      font-size: 13px; color: var(--text-muted); font-weight: 500;
+    }
+
+    /* --- FEATURED GRID (big cards) --- */
+    .featured-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 20px;
+    }
+    .featured-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: transform 0.2s cubic-bezier(0.4,0,0.2,1), box-shadow 0.2s;
+      cursor: default;
+    }
+    .featured-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+    }
+    .featured-card .cover-wrap {
+      aspect-ratio: 2/3;
+      overflow: hidden;
+      background: #F1F5F9;
+      position: relative;
+    }
+    .featured-card .cover-wrap img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+    .featured-card:hover .cover-wrap img {
+      transform: scale(1.03);
+    }
+    .cover-placeholder {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-serif);
+      font-size: 28px; font-weight: 700;
+      color: #fff;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      padding: 16px; text-align: center;
+      line-height: 1.3;
+    }
+    .rating-badge {
+      position: absolute; top: 8px; right: 8px;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(4px);
+      color: #FBBF24;
+      font-size: 12px; font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 6px;
+    }
+    .featured-card .info {
+      padding: 14px 16px;
+    }
+    .featured-card .info h3 {
+      font-size: 15px; font-weight: 700;
+      margin-bottom: 2px;
+      line-height: 1.3;
+    }
+    .featured-card .info .author {
+      font-size: 12px; color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+    .featured-card .info .review {
+      font-size: 13px; color: var(--text-secondary);
+      line-height: 1.5;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* --- GENRE PILLS --- */
+    .genre-pills {
+      display: flex; flex-wrap: wrap; gap: 8px;
+      margin-bottom: 24px;
+    }
+    .genre-pill {
+      padding: 6px 16px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      font-size: 13px; font-weight: 500;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.2s;
+      user-select: none;
+    }
+    .genre-pill:hover { border-color: var(--accent); color: var(--accent); }
+    .genre-pill.active {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+
+    /* --- MANGA GRID --- */
+    .manga-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 20px;
+    }
+    .manga-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: transform 0.2s cubic-bezier(0.4,0,0.2,1), box-shadow 0.2s;
+    }
+    .manga-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-hover);
+    }
+    .manga-card-inner {
+      display: flex; gap: 14px;
+      padding: 16px;
+    }
+    .manga-card .thumb {
+      width: 80px; min-height: 110px;
+      border-radius: 8px;
+      overflow: hidden;
+      flex-shrink: 0;
+      background: #F1F5F9;
+    }
+    .manga-card .thumb img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+    .thumb-placeholder {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-serif);
+      font-size: 16px; font-weight: 700;
+      color: #fff; text-align: center;
+      padding: 8px; line-height: 1.2;
+    }
+    .manga-card .detail { flex: 1; min-width: 0; }
+    .manga-card .detail h3 {
+      font-size: 15px; font-weight: 700;
+      margin-bottom: 2px; line-height: 1.3;
+    }
+    .manga-card .detail .meta {
+      font-size: 12px; color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+    .manga-card .detail .stars {
+      color: #FBBF24; font-size: 13px;
+      margin-bottom: 6px;
+    }
+    .manga-card .detail .tags {
+      display: flex; flex-wrap: wrap; gap: 4px;
+      margin-bottom: 8px;
+    }
+    .tag {
+      font-size: 11px; padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: 500;
+    }
+    .manga-card .detail .review-text {
+      font-size: 13px; color: var(--text-secondary);
+      line-height: 1.5;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* --- AFFILIATE BUTTONS --- */
+    .affiliate-row {
+      display: flex; gap: 6px;
+      padding: 0 16px 14px;
+      flex-wrap: wrap;
+    }
+    .affiliate-btn {
+      display: inline-flex; align-items: center; gap: 4px;
+      padding: 5px 10px;
+      border-radius: 6px;
+      font-size: 11px; font-weight: 600;
+      text-decoration: none;
+      transition: opacity 0.15s;
+      color: #fff;
+    }
+    .affiliate-btn:hover { opacity: 0.85; }
+    .affiliate-btn.books { background: #2D6CDF; }
+    .affiliate-btn.kobo { background: #BF0B36; }
+    .affiliate-btn.readmoo { background: #00A6A0; }
+
+    /* --- STATUS BADGE --- */
+    .status-badge {
+      display: inline-block;
+      font-size: 11px; font-weight: 600;
+      padding: 2px 8px; border-radius: 4px;
+    }
+    .status-badge.ongoing { background: #DBEAFE; color: #1D4ED8; }
+    .status-badge.completed { background: #DCFCE7; color: #16A34A; }
+
+    /* --- FILTER BAR --- */
+    .filter-bar {
+      display: flex; gap: 12px; align-items: center;
+      margin-bottom: 24px; flex-wrap: wrap;
+    }
+    .search-input {
+      padding: 8px 14px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-size: 14px;
+      font-family: var(--font-sans);
+      background: var(--card);
+      color: var(--text);
+      outline: none;
+      width: 220px;
+      transition: border-color 0.2s;
+    }
+    .search-input:focus { border-color: var(--accent); }
+    .sort-select {
+      padding: 8px 12px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-size: 13px;
+      font-family: var(--font-sans);
+      background: var(--card);
+      color: var(--text);
+      outline: none;
+      cursor: pointer;
+    }
+
+    /* --- EMPTY STATE --- */
+    .empty-state {
+      text-align: center;
+      padding: 64px 24px;
+      color: var(--text-muted);
+      font-size: 15px;
+    }
+
+    /* --- FOOTER --- */
+    footer {
+      max-width: 1200px; margin: 0 auto;
+      padding: 32px 24px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      font-size: 12px; color: var(--text-muted);
+    }
+
+    /* --- READING SHELF (horizontal scroll) --- */
+    .shelf {
+      display: flex; gap: 16px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+    }
+    .shelf::-webkit-scrollbar { height: 4px; }
+    .shelf::-webkit-scrollbar-thumb { background: #E2E8F0; border-radius: 4px; }
+    .shelf-item {
+      flex-shrink: 0;
+      width: 120px;
+      scroll-snap-align: start;
+      text-align: center;
+    }
+    .shelf-item .shelf-cover {
+      width: 120px; height: 170px;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #F1F5F9;
+      margin-bottom: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      transition: transform 0.2s;
+    }
+    .shelf-item:hover .shelf-cover { transform: translateY(-3px); }
+    .shelf-item .shelf-cover img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+    .shelf-item .shelf-title {
+      font-size: 12px; font-weight: 600;
+      line-height: 1.3;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .shelf-item .shelf-progress {
+      font-size: 11px; color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+      .featured-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+      .manga-grid { grid-template-columns: 1fr; }
+      .hero { padding: 40px 20px 32px; }
+      .section { padding: 32px 16px; }
+      .search-input { width: 100%; }
+      .filter-bar { flex-direction: column; align-items: stretch; }
+    }
+    @media (max-width: 480px) {
+      .featured-grid { grid-template-columns: repeat(2, 1fr); }
+      .nav-links a.hide-mobile { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <a href="/" class="nav-brand">
+        <div class="nav-logo">M</div>
+        <span class="nav-title">漫坑選物</span>
+      </a>
+      <div class="nav-links">
+        <a href="#featured">精選</a>
+        <a href="#all" class="hide-mobile">全部推薦</a>
+        <a href="/collection.html">私人書架</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-badge">MANGA SELECT</div>
+    <h1>漫坑<span>選物</span></h1>
+    <p>嚴選好漫畫，快樂入坑。每一本都是精心挑選，值得你花時間的作品。</p>
+  </section>
+
+  <!-- FEATURED: 這本漫畫真厲害 -->
+  <section class="section" id="featured">
+    <div class="section-header">
+      <h2>這本漫畫真厲害</h2>
+      <span class="count" id="featured-count"></span>
+    </div>
+    <div class="featured-grid" id="featured-grid"></div>
+  </section>
+
+  <!-- CURRENTLY READING -->
+  <section class="section" id="reading">
+    <div class="section-header">
+      <h2>最近在讀</h2>
+    </div>
+    <div class="shelf" id="reading-shelf"></div>
+  </section>
+
+  <!-- SEASONAL PICKS -->
+  <section class="section" id="seasonal" style="display:none;">
+    <div class="section-header">
+      <h2 id="seasonal-title"></h2>
+    </div>
+    <div class="featured-grid" id="seasonal-grid"></div>
+  </section>
+
+  <!-- ALL RECOMMENDATIONS -->
+  <section class="section" id="all">
+    <div class="section-header">
+      <h2>全部推薦</h2>
+      <span class="count" id="all-count"></span>
+    </div>
+    <div class="genre-pills" id="genre-pills"></div>
+    <div class="filter-bar">
+      <input type="text" class="search-input" id="search" placeholder="搜尋漫畫名稱或作者...">
+      <select class="sort-select" id="sort">
+        <option value="rating">依評分排序</option>
+        <option value="dateAdded">依新增日期</option>
+        <option value="title">依名稱排序</option>
+      </select>
+    </div>
+    <div class="manga-grid" id="manga-grid"></div>
+    <div class="empty-state" id="empty" style="display:none;">
+      沒有找到符合條件的漫畫
+    </div>
+  </section>
+
+  <footer>
+    MANGA SELECT 漫坑選物 · Curated by Jolin
+  </footer>
+
+  <script>
+    let DATA = null;
+    let activeGenre = null;
+
+    // Genre color map
+    const GENRE_COLORS = {};
+    const PLACEHOLDER_GRADIENTS = [
+      'linear-gradient(135deg, #E63946, #F97316)',
+      'linear-gradient(135deg, #3B82F6, #8B5CF6)',
+      'linear-gradient(135deg, #10B981, #06B6D4)',
+      'linear-gradient(135deg, #8B5CF6, #EC4899)',
+      'linear-gradient(135deg, #F59E0B, #EF4444)',
+      'linear-gradient(135deg, #6366F1, #3B82F6)',
+    ];
+
+    function getGradient(id) {
+      let hash = 0;
+      for (let i = 0; i < id.length; i++) hash = ((hash << 5) - hash) + id.charCodeAt(i);
+      return PLACEHOLDER_GRADIENTS[Math.abs(hash) % PLACEHOLDER_GRADIENTS.length];
+    }
+
+    function stars(n) {
+      return '★'.repeat(n) + '☆'.repeat(5 - n);
+    }
+
+    function renderCover(manga, size) {
+      if (manga.coverUrl) {
+        return `<img src="${manga.coverUrl}" alt="${manga.title}" loading="lazy" onerror="this.parentElement.innerHTML='<div class=\\'cover-placeholder\\' style=\\'background:${getGradient(manga.id)}\\'>${manga.title}</div>'">`;
+      }
+      return `<div class="cover-placeholder" style="background:${getGradient(manga.id)}">${manga.title}</div>`;
+    }
+
+    function renderTags(manga) {
+      return manga.genres.map(g => {
+        const color = GENRE_COLORS[g] || '#94A3B8';
+        return `<span class="tag" style="background:${color}15;color:${color}">${g}</span>`;
+      }).join('');
+    }
+
+    function renderAffiliateButtons(links) {
+      if (!links) return '';
+      const btns = [];
+      if (links.books) btns.push(`<a href="${links.books}" target="_blank" rel="noopener" class="affiliate-btn books">博客來</a>`);
+      if (links.kobo) btns.push(`<a href="${links.kobo}" target="_blank" rel="noopener" class="affiliate-btn kobo">Kobo</a>`);
+      if (links.readmoo) btns.push(`<a href="${links.readmoo}" target="_blank" rel="noopener" class="affiliate-btn readmoo">Readmoo</a>`);
+      return btns.length ? `<div class="affiliate-row">${btns.join('')}</div>` : '';
+    }
+
+    function renderFeaturedCard(manga) {
+      return `
+        <div class="featured-card">
+          <div class="cover-wrap">
+            ${renderCover(manga)}
+            <div class="rating-badge">${stars(manga.rating)}</div>
+          </div>
+          <div class="info">
+            <h3>${manga.title}</h3>
+            <div class="author">${manga.author}</div>
+            <div class="review">${manga.shortReview}</div>
+          </div>
+          ${renderAffiliateButtons(manga.affiliateLinks)}
+        </div>`;
+    }
+
+    function renderMangaCard(manga) {
+      return `
+        <div class="manga-card" data-genres="${manga.genres.join(',')}" data-rating="${manga.rating}" data-title="${manga.title}" data-author="${manga.author}">
+          <div class="manga-card-inner">
+            <div class="thumb">
+              ${manga.coverUrl
+                ? `<img src="${manga.coverUrl}" alt="${manga.title}" loading="lazy" onerror="this.parentElement.innerHTML='<div class=\\'thumb-placeholder\\' style=\\'background:${getGradient(manga.id)}\\'>${manga.title.slice(0,4)}</div>'">`
+                : `<div class="thumb-placeholder" style="background:${getGradient(manga.id)}">${manga.title.slice(0, 4)}</div>`
+              }
+            </div>
+            <div class="detail">
+              <h3>${manga.title}</h3>
+              <div class="meta">${manga.author} · <span class="status-badge ${manga.status}">${manga.status === 'ongoing' ? '連載中' : '已完結'}</span></div>
+              <div class="stars">${stars(manga.rating)}</div>
+              <div class="tags">${renderTags(manga)}</div>
+              <div class="review-text">${manga.shortReview}</div>
+            </div>
+          </div>
+          ${renderAffiliateButtons(manga.affiliateLinks)}
+        </div>`;
+    }
+
+    function renderShelfItem(manga) {
+      return `
+        <div class="shelf-item">
+          <div class="shelf-cover">
+            ${manga.coverUrl
+              ? `<img src="${manga.coverUrl}" alt="${manga.title}" loading="lazy">`
+              : `<div class="cover-placeholder" style="background:${getGradient(manga.id)};font-size:14px">${manga.title.slice(0,4)}</div>`
+            }
+          </div>
+          <div class="shelf-title">${manga.title}</div>
+          <div class="shelf-progress">${manga.currentProgress || ''}</div>
+        </div>`;
+    }
+
+    function getMangaById(id) {
+      return DATA.manga.find(m => m.id === id);
+    }
+
+    function getRecommended() {
+      return DATA.manga.filter(m => m.recommended || m.rating >= 4);
+    }
+
+    function renderAll() {
+      // Genre colors
+      DATA.genres.forEach(g => { GENRE_COLORS[g.label] = g.color; });
+
+      // Featured
+      const featuredManga = DATA.featured.mangaIds.map(getMangaById).filter(Boolean);
+      document.getElementById('featured-grid').innerHTML = featuredManga.map(renderFeaturedCard).join('');
+      document.getElementById('featured-count').textContent = `${featuredManga.length} 部神作`;
+
+      // Currently reading
+      const reading = DATA.manga.filter(m => m.readingStatus === 'reading');
+      document.getElementById('reading-shelf').innerHTML = reading.map(renderShelfItem).join('');
+      if (!reading.length) document.getElementById('reading').style.display = 'none';
+
+      // Seasonal
+      if (DATA.seasonal && DATA.seasonal.length > 0) {
+        const latest = DATA.seasonal[DATA.seasonal.length - 1];
+        const seasonalManga = latest.mangaIds.map(getMangaById).filter(Boolean);
+        if (seasonalManga.length) {
+          document.getElementById('seasonal').style.display = '';
+          document.getElementById('seasonal-title').textContent = latest.label;
+          document.getElementById('seasonal-grid').innerHTML = seasonalManga.map(renderFeaturedCard).join('');
+        }
+      }
+
+      // Genre pills
+      const usedGenres = new Set();
+      getRecommended().forEach(m => m.genres.forEach(g => usedGenres.add(g)));
+      const genrePillsHTML = `<div class="genre-pill active" data-genre="">全部</div>` +
+        Array.from(usedGenres).map(g =>
+          `<div class="genre-pill" data-genre="${g}">${g}</div>`
+        ).join('');
+      document.getElementById('genre-pills').innerHTML = genrePillsHTML;
+
+      // All recommended
+      renderMangaGrid();
+    }
+
+    function renderMangaGrid() {
+      const search = document.getElementById('search').value.toLowerCase();
+      const sort = document.getElementById('sort').value;
+
+      let manga = getRecommended();
+
+      // Filter by genre
+      if (activeGenre) {
+        manga = manga.filter(m => m.genres.includes(activeGenre));
+      }
+
+      // Filter by search
+      if (search) {
+        manga = manga.filter(m =>
+          m.title.toLowerCase().includes(search) ||
+          (m.titleOriginal && m.titleOriginal.toLowerCase().includes(search)) ||
+          m.author.toLowerCase().includes(search)
+        );
+      }
+
+      // Sort
+      if (sort === 'rating') manga.sort((a, b) => b.rating - a.rating);
+      else if (sort === 'dateAdded') manga.sort((a, b) => b.dateAdded.localeCompare(a.dateAdded));
+      else if (sort === 'title') manga.sort((a, b) => a.title.localeCompare(b.title, 'zh-TW'));
+
+      const grid = document.getElementById('manga-grid');
+      const empty = document.getElementById('empty');
+      const countEl = document.getElementById('all-count');
+
+      if (manga.length) {
+        grid.innerHTML = manga.map(renderMangaCard).join('');
+        grid.style.display = '';
+        empty.style.display = 'none';
+      } else {
+        grid.style.display = 'none';
+        empty.style.display = '';
+      }
+      countEl.textContent = `${manga.length} 部`;
+    }
+
+    // Event listeners
+    document.getElementById('genre-pills').addEventListener('click', e => {
+      const pill = e.target.closest('.genre-pill');
+      if (!pill) return;
+      document.querySelectorAll('.genre-pill').forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+      activeGenre = pill.dataset.genre || null;
+      renderMangaGrid();
+    });
+
+    document.getElementById('search').addEventListener('input', renderMangaGrid);
+    document.getElementById('sort').addEventListener('change', renderMangaGrid);
+
+    // Load data
+    fetch('./data.json')
+      .then(r => r.json())
+      .then(data => { DATA = data; renderAll(); })
+      .catch(err => {
+        console.error('Failed to load data:', err);
+        document.querySelector('.hero p').textContent = '資料載入失敗，請稍後重試。';
+      });
+  </script>
+</body>
+</html>

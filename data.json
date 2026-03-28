@@ -1,0 +1,260 @@
+{
+  "lastUpdated": "2026-03-28",
+  "profile": {
+    "name": "Jolin",
+    "bio": "PM by day, manga reader by night. 嚴選好漫畫，快樂入坑。"
+  },
+  "featured": {
+    "title": "這本漫畫真厲害",
+    "description": "Jolin 的 all-time 神作精選",
+    "mangaIds": ["frieren", "chainsaw-man", "one-piece", "slam-dunk", "monster"]
+  },
+  "seasonal": [
+    {
+      "season": "2026-spring",
+      "label": "2026 春季推薦",
+      "mangaIds": ["dandadan", "sakamoto-days", "kaiju-no-8"]
+    }
+  ],
+  "manga": [
+    {
+      "id": "frieren",
+      "title": "葬送的芙莉蓮",
+      "titleOriginal": "葬送のフリーレン",
+      "author": "山田鐘人 / 阿部司",
+      "status": "ongoing",
+      "genres": ["青年", "奇幻", "冒險"],
+      "tags": ["魔法", "旅途", "生與死", "催淚"],
+      "coverUrl": "https://cdn.myanimelist.net/images/manga/1/268892l.jpg",
+      "rating": 5,
+      "readingStatus": "reading",
+      "currentProgress": "第13集",
+      "dateAdded": "2024-01-10",
+      "recommended": true,
+      "shortReview": "用最溫柔的方式講述生命的意義，每一話都值得反覆品味。",
+      "notes": "動畫版也很棒，Madhouse 製作。第二季確定。",
+      "affiliateLinks": {
+        "books": "",
+        "kobo": "",
+        "readmoo": ""
+      }
+    },
+    {
+      "id": "chainsaw-man",
+      "title": "鏈鋸人",
+      "titleOriginal": "チェンソーマン",
+      "author": "藤本樹",
+      "status": "ongoing",
+      "genres": ["少年", "動作", "黑暗奇幻"],
+      "tags": ["惡魔", "反英雄", "藤本樹", "神作"],
+      "coverUrl": "https://cdn.myanimelist.net/images/manga/3/216466l.jpg",
+      "rating": 5,
+      "readingStatus": "reading",
+      "currentProgress": "第2部 連載中",
+      "dateAdded": "2024-06-15",
+      "recommended": true,
+      "shortReview": "藤本樹的敘事天才，每一話都在打破你的預期。",
+      "notes": "Part 1 是完美的，Part 2 節奏較慢但在鋪陳更大的東西。",
+      "affiliateLinks": {
+        "books": "",
+        "kobo": "",
+        "readmoo": ""
+      }
+    },
+    {
+      "id": "one-piece",
+      "title": "ONE PIECE 航海王",
+      "titleOriginal": "ONE PIECE",
+      "author": "尾田榮一郎",
+      "status": "ongoing",
+      "genres": ["少年", "冒險", "動作"],
+      "tags": ["海賊", "夥伴", "史詩", "神作"],
+      "coverUrl": "https://cdn.myanimelist.net/images/manga/2/253146l.jpg",
+      "rating": 5,
+      "readingStatus": "reading",
+      "currentProgress": "最終章 連載中",
+      "dateAdded": "2024-01-01",
+      "recommended": true,
+      "shortReview": "史上最偉大的少年漫畫，沒有之一。世界觀的深度無人能及。",
+      "notes": "最終章進行中，預計 2-3 年完結。",
+      "affiliateLinks": {
+        "books": "",
+        "kobo": "",
+        "readmoo": ""
+      }
+    },
+    {
+      "id": "slam-dunk",
+      "title": "灌籃高手",
+      "titleOriginal": "SLAM DUNK",
+      "author": "井上雄彥",
+      "status": "completed",
+      "genres": ["少年", "運動"],
+      "tags": ["籃球", "青春", "經典", "神作"],
+      "coverUrl": "https://cdn.myanimelist.net/images/manga/2/258749l.jpg",
+      "rating": 5,
+      "readingStatus": "completed",
+      "currentProgress": "全 31 集",
+      "dateAdded": "2024-01-01",
+      "recommended": true,
+      "shortReview": "運動漫畫的巔峰，結局至今仍讓人熱血沸騰。",
+      "notes": "2022 電影版 THE FIRST SLAM DUNK 也是神作。",
+      "affiliateLinks": {
+        "books": "",
+        "kobo": "",
+        "readmoo": ""
+      }
+    },
+    {
+      "id": "monster",
+      "title": "乃木坂太郎怪物",
+      "titleOriginal": "MONSTER",
+      "author": "浦澤直樹",
+      "status": "completed",
+      "genres": ["青年", "推理", "驚悚"],
+      "tags": ["心理", "懸疑", "浦澤直樹", "神作"],
+      "coverUrl": "https://cdn.myanimelist.net/images/manga/3/258224l.jpg",
+      "rating": 5,
+      "readingStatus": "completed",
+      "currentProgress": "全 18 集",
+      "dateAdded": "2024-02-20",
+      "recommended": true,
+      "shortReview": "漫畫能達到的敘事巔峰，每一頁都是精密佈局。",
+      "notes": "動畫版 74 集完整改編，品質極高。",
+      "affiliateLinks": {
+        "books": "",
+        "kobo": "",
+        "readmoo": ""
+      }
+    },
+    {
+      "id": "dandadan",
+      "title": "DAN DA DAN",
+      "titleOriginal": "ダンダダン",
+      "author": "龍幸伸",
+      "status": "ongoing",
+      "genres": ["少年", "動作", "超自然"],
+      "tags": ["幽靈", "外星人", "搞笑", "熱血"],
+      "coverUrl": "https://cdn.myanimelist.net/images/manga/3/259694l.jpg",
+      "rating": 4,
+      "readingStatus": "reading",
+      "currentProgress": "連載中",
+      "dateAdded": "2025-10-01",
+      "recommended": true,
+      "shortReview": "超自然 x 外星人 x 青春戀愛，畫功炸裂節奏超快。",
+      "notes": "動畫第一季大成功，Science SARU 製作。",
+      "affiliateLinks": {
+        "books": "",
+        "kobo": "",
+        "readmoo": ""
+      }
+    },
+    {
+      "id": "sakamoto-days",
+      "title": "坂本日常",
+      "titleOriginal": "SAKAMOTO DAYS",
+      "author": "鈴木祐斗",
+      "status": "ongoing",
+      "genres": ["少年", "動作", "搞笑"],
+      "tags": ["殺手", "退休", "動作喜劇"],
+      "coverUrl": "https://cdn.myanimelist.net/images/manga/1/259750l.jpg",
+      "rating": 4,
+      "readingStatus": "reading",
+      "currentProgress": "連載中",
+      "dateAdded": "2025-11-15",
+      "recommended": true,
+      "shortReview": "退休殺手的日常，動作場面堪比電影分鏡。",
+      "notes": "2025 動畫化，TMS Entertainment 製作。",
+      "affiliateLinks": {
+        "books": "",
+        "kobo": "",
+        "readmoo": ""
+      }
+    },
+    {
+      "id": "kaiju-no-8",
+      "title": "怪獸8號",
+      "titleOriginal": "怪獣8号",
+      "author": "松本直也",
+      "status": "ongoing",
+      "genres": ["少年", "動作", "科幻"],
+      "tags": ["怪獸", "變身", "熱血"],
+      "coverUrl": "https://cdn.myanimelist.net/images/manga/3/252307l.jpg",
+      "rating": 4,
+      "readingStatus": "reading",
+      "currentProgress": "連載中",
+      "dateAdded": "2025-08-01",
+      "recommended": true,
+      "shortReview": "大叔變身怪獸打怪獸，設定有趣節奏明快。",
+      "notes": "動畫第一季不錯但有些地方趕進度。",
+      "affiliateLinks": {
+        "books": "",
+        "kobo": "",
+        "readmoo": ""
+      }
+    },
+    {
+      "id": "blue-lock",
+      "title": "藍色監獄",
+      "titleOriginal": "ブルーロック",
+      "author": "金城宗幸 / 之村健次",
+      "status": "ongoing",
+      "genres": ["少年", "運動"],
+      "tags": ["足球", "競爭", "生存遊戲"],
+      "coverUrl": "https://cdn.myanimelist.net/images/manga/2/252019l.jpg",
+      "rating": 3,
+      "readingStatus": "reading",
+      "currentProgress": "連載中",
+      "dateAdded": "2025-06-01",
+      "recommended": false,
+      "shortReview": "前期很精彩，中後期有些拖沓。",
+      "notes": "世界篇開始後節奏變慢，但還是會追。",
+      "affiliateLinks": {
+        "books": "",
+        "kobo": "",
+        "readmoo": ""
+      }
+    },
+    {
+      "id": "spy-family",
+      "title": "SPY×FAMILY 間諜家家酒",
+      "titleOriginal": "SPY×FAMILY",
+      "author": "遠藤達哉",
+      "status": "ongoing",
+      "genres": ["少年", "搞笑", "動作"],
+      "tags": ["間諜", "家庭", "安妮亞", "溫馨"],
+      "coverUrl": "https://cdn.myanimelist.net/images/manga/1/260900l.jpg",
+      "rating": 4,
+      "readingStatus": "reading",
+      "currentProgress": "連載中",
+      "dateAdded": "2024-03-01",
+      "recommended": true,
+      "shortReview": "假面家庭的溫馨日常，安妮亞太可愛了。",
+      "notes": "動畫版非常成功，已出到第二季+劇場版。",
+      "affiliateLinks": {
+        "books": "",
+        "kobo": "",
+        "readmoo": ""
+      }
+    }
+  ],
+  "genres": [
+    { "id": "shonen", "label": "少年", "color": "#3B82F6" },
+    { "id": "seinen", "label": "青年", "color": "#8B5CF6" },
+    { "id": "shoujo", "label": "少女", "color": "#EC4899" },
+    { "id": "josei", "label": "女性", "color": "#F472B6" },
+    { "id": "fantasy", "label": "奇幻", "color": "#10B981" },
+    { "id": "scifi", "label": "科幻", "color": "#06B6D4" },
+    { "id": "action", "label": "動作", "color": "#F97316" },
+    { "id": "adventure", "label": "冒險", "color": "#84CC16" },
+    { "id": "sports", "label": "運動", "color": "#EF4444" },
+    { "id": "mystery", "label": "推理", "color": "#6366F1" },
+    { "id": "horror", "label": "恐怖", "color": "#1F2937" },
+    { "id": "romance", "label": "戀愛", "color": "#F472B6" },
+    { "id": "comedy", "label": "搞笑", "color": "#FBBF24" },
+    { "id": "slice-of-life", "label": "日常", "color": "#F59E0B" },
+    { "id": "dark-fantasy", "label": "黑暗奇幻", "color": "#4B5563" },
+    { "id": "supernatural", "label": "超自然", "color": "#A855F7" },
+    { "id": "thriller", "label": "驚悚", "color": "#DC2626" }
+  ]
+}
