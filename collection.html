@@ -4,26 +4,29 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
-  <title>私人書架 — MANGA SELECT</title>
+  <title>Private Collection — MANGA SELECT</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&family=Noto+Serif+TC:wght@600;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;600;700&family=Shippori+Mincho:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #FAFAF8;
+      --bg: #FFFBEB;
+      --bg-warm: #FCF6F0;
       --card: #FFFFFF;
-      --text: #1A1A2E;
+      --text: #1E293B;
       --text-secondary: #64748B;
       --text-muted: #94A3B8;
-      --accent: #E63946;
-      --accent-light: rgba(230,57,70,0.08);
-      --border: rgba(0,0,0,0.06);
-      --shadow: 0 2px 12px rgba(0,0,0,0.06);
-      --radius: 16px;
-      --font-sans: "Noto Sans TC", -apple-system, BlinkMacSystemFont, sans-serif;
-      --font-serif: "Noto Serif TC", serif;
+      --accent: #C23B22;
+      --accent-light: rgba(194,59,34,0.06);
+      --amber: #D97706;
+      --border: #FAEEE1;
+      --border-strong: #E8D5C4;
+      --shadow: 0 2px 12px rgba(120,80,40,0.06);
+      --radius: 4px;
+      --font-sans: "Noto Sans JP", -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-serif: "Shippori Mincho", "Noto Serif JP", serif;
     }
 
     body {
@@ -31,96 +34,109 @@
       background: var(--bg);
       color: var(--text);
       -webkit-font-smoothing: antialiased;
-      line-height: 1.6;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    body::after {
+      content: '';
+      position: fixed; inset: 0; z-index: 9999;
+      pointer-events: none; opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-repeat: repeat; background-size: 256px 256px;
     }
 
     /* --- NAV --- */
     nav {
       position: sticky; top: 0; z-index: 100;
-      background: rgba(250,250,248,0.85);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+      background: rgba(255,251,235,0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
-      padding: 0 24px;
     }
     .nav-inner {
-      max-width: 1200px; margin: 0 auto;
+      max-width: 1120px; margin: 0 auto;
       display: flex; align-items: center; justify-content: space-between;
-      height: 56px;
+      height: 52px; padding: 0 32px;
     }
     .nav-brand {
-      display: flex; align-items: center; gap: 10px;
+      display: flex; align-items: center; gap: 12px;
       text-decoration: none; color: var(--text);
     }
     .nav-logo {
-      width: 32px; height: 32px;
-      background: linear-gradient(135deg, #E63946, #D62839);
-      border-radius: 8px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 15px; font-weight: 700; color: #fff;
-    }
-    .nav-title {
       font-family: var(--font-serif);
-      font-size: 15px; font-weight: 700;
-      letter-spacing: 0.04em;
+      font-size: 20px; font-weight: 700;
+      color: var(--accent);
+      letter-spacing: -0.02em; line-height: 1;
     }
-    .nav-links { display: flex; gap: 24px; align-items: center; }
+    .nav-divider { width: 1px; height: 16px; background: var(--border-strong); }
+    .nav-sub {
+      font-size: 11px; font-weight: 500;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .nav-links { display: flex; gap: 28px; align-items: center; }
     .nav-links a {
-      font-size: 13px; color: var(--text-secondary);
+      font-size: 12px; color: var(--text-secondary);
       text-decoration: none; font-weight: 500;
-      transition: color 0.2s;
+      letter-spacing: 0.06em; transition: color 0.2s;
+      cursor: pointer;
     }
     .nav-links a:hover { color: var(--accent); }
     .nav-links a.active { color: var(--accent); }
 
-    /* --- STATS DASHBOARD --- */
+    /* --- STATS --- */
     .stats-section {
-      max-width: 1200px; margin: 0 auto;
-      padding: 32px 24px 0;
+      max-width: 1120px; margin: 0 auto;
+      padding: 32px 32px 0;
     }
     .stats-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 12px;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
     }
     .stat-card {
       background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 16px;
+      padding: 20px 16px;
       text-align: center;
     }
     .stat-value {
       font-family: var(--font-serif);
-      font-size: 28px; font-weight: 700;
-      color: var(--text);
-      line-height: 1;
+      font-size: 32px; font-weight: 700;
+      color: var(--text); line-height: 1;
     }
     .stat-value.accent { color: var(--accent); }
     .stat-label {
-      font-size: 12px; color: var(--text-muted);
-      margin-top: 4px; font-weight: 500;
+      font-size: 10px; color: var(--text-muted);
+      margin-top: 6px; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
     }
 
     /* --- TABS --- */
     .tabs-section {
-      max-width: 1200px; margin: 0 auto;
-      padding: 24px 24px 0;
+      max-width: 1120px; margin: 0 auto;
+      padding: 28px 32px 0;
     }
     .tabs {
-      display: flex; gap: 4px;
-      border-bottom: 1px solid var(--border);
+      display: flex; gap: 0;
+      border-bottom: 2px solid var(--text);
       overflow-x: auto;
     }
     .tab {
-      padding: 10px 18px;
-      font-size: 13px; font-weight: 600;
+      padding: 10px 20px;
+      font-size: 12px; font-weight: 700;
       color: var(--text-muted);
       cursor: pointer;
       border-bottom: 2px solid transparent;
+      margin-bottom: -2px;
       transition: all 0.2s;
       white-space: nowrap;
       user-select: none;
+      letter-spacing: 0.04em;
     }
     .tab:hover { color: var(--text-secondary); }
     .tab.active { color: var(--accent); border-bottom-color: var(--accent); }
@@ -128,26 +144,25 @@
       display: inline-block;
       background: var(--accent-light);
       color: var(--accent);
-      font-size: 11px;
-      padding: 1px 6px;
-      border-radius: 8px;
-      margin-left: 4px;
+      font-size: 10px; font-weight: 700;
+      padding: 1px 6px; border-radius: 2px;
+      margin-left: 6px;
     }
 
-    /* --- COLLECTION CONTENT --- */
+    /* --- CONTENT --- */
     .content-section {
-      max-width: 1200px; margin: 0 auto;
-      padding: 20px 24px 48px;
+      max-width: 1120px; margin: 0 auto;
+      padding: 24px 32px 64px;
     }
     .filter-bar {
       display: flex; gap: 12px; align-items: center;
-      margin-bottom: 16px; flex-wrap: wrap;
+      margin-bottom: 20px; flex-wrap: wrap;
     }
     .search-input {
-      padding: 8px 14px;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      font-size: 14px;
+      padding: 9px 14px;
+      border: 1px solid var(--border-strong);
+      border-radius: 2px;
+      font-size: 13px;
       font-family: var(--font-sans);
       background: var(--card);
       color: var(--text);
@@ -155,12 +170,13 @@
       flex: 1; min-width: 200px;
       transition: border-color 0.2s;
     }
+    .search-input::placeholder { color: var(--text-muted); }
     .search-input:focus { border-color: var(--accent); }
     .sort-select {
-      padding: 8px 12px;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      font-size: 13px;
+      padding: 9px 12px;
+      border: 1px solid var(--border-strong);
+      border-radius: 2px;
+      font-size: 12px;
       font-family: var(--font-sans);
       background: var(--card);
       color: var(--text);
@@ -170,178 +186,158 @@
     /* --- TABLE --- */
     .collection-table {
       width: 100%;
-      border-collapse: separate;
-      border-spacing: 0 6px;
+      border-collapse: collapse;
     }
     .collection-table thead th {
-      font-size: 11px; font-weight: 600;
+      font-size: 10px; font-weight: 700;
       color: var(--text-muted);
       text-align: left;
-      padding: 8px 12px;
+      padding: 10px 14px;
       text-transform: uppercase;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.1em;
       cursor: pointer;
       user-select: none;
       white-space: nowrap;
+      border-bottom: 1px solid var(--border-strong);
     }
     .collection-table thead th:hover { color: var(--text-secondary); }
     .collection-table tbody tr {
       background: var(--card);
-      transition: box-shadow 0.15s;
+      transition: background 0.15s;
+      border-bottom: 1px solid var(--border);
     }
-    .collection-table tbody tr:hover {
-      box-shadow: var(--shadow);
-    }
+    .collection-table tbody tr:hover { background: var(--bg-warm); }
     .collection-table td {
-      padding: 12px;
-      font-size: 14px;
+      padding: 14px;
+      font-size: 13px;
       vertical-align: middle;
     }
-    .collection-table td:first-child { border-radius: 10px 0 0 10px; }
-    .collection-table td:last-child { border-radius: 0 10px 10px 0; }
 
     .row-cover {
-      width: 44px; height: 62px;
-      border-radius: 6px;
+      width: 40px; height: 56px;
+      border-radius: 2px;
       overflow: hidden;
-      background: #F1F5F9;
+      background: var(--bg-warm);
       flex-shrink: 0;
+      box-shadow: 2px 2px 0 rgba(120,80,40,0.06);
     }
     .row-cover img { width: 100%; height: 100%; object-fit: cover; }
     .row-cover-placeholder {
       width: 100%; height: 100%;
       display: flex; align-items: center; justify-content: center;
-      font-size: 11px; font-weight: 700; color: #fff;
+      font-size: 10px; font-weight: 700; color: #fff;
       text-align: center; line-height: 1.1; padding: 2px;
     }
-    .row-title-cell {
-      display: flex; align-items: center; gap: 12px;
+    .row-title-cell { display: flex; align-items: center; gap: 12px; }
+    .row-title {
+      font-family: var(--font-serif);
+      font-weight: 600; font-size: 14px;
     }
-    .row-title { font-weight: 600; }
-    .row-original {
-      font-size: 12px; color: var(--text-muted);
-      margin-top: 1px;
-    }
-    .row-stars { color: #FBBF24; font-size: 13px; white-space: nowrap; }
+    .row-original { font-size: 11px; color: var(--text-muted); margin-top: 1px; }
+    .row-stars { color: var(--amber); font-size: 12px; white-space: nowrap; letter-spacing: 1px; }
     .row-status {
       display: inline-block;
-      font-size: 11px; font-weight: 600;
-      padding: 3px 8px; border-radius: 6px;
-      white-space: nowrap;
+      font-size: 10px; font-weight: 700;
+      padding: 3px 8px; border-radius: 2px;
+      white-space: nowrap; letter-spacing: 0.04em;
     }
-    .row-status.reading { background: #DBEAFE; color: #1D4ED8; }
-    .row-status.completed { background: #DCFCE7; color: #16A34A; }
-    .row-status.want-to-read { background: #FEF3C7; color: #D97706; }
-    .row-status.dropped { background: #FEE2E2; color: #DC2626; }
+    .row-status.reading { background: rgba(37,99,235,0.08); color: #2563EB; }
+    .row-status.completed { background: rgba(22,163,106,0.08); color: #16A36A; }
+    .row-status.want-to-read { background: rgba(217,119,6,0.08); color: #D97706; }
+    .row-status.dropped { background: rgba(220,38,38,0.08); color: #DC2626; }
     .row-tags { display: flex; flex-wrap: wrap; gap: 3px; }
     .row-tag {
       font-size: 10px; padding: 1px 6px;
-      border-radius: 3px; font-weight: 500;
+      border-radius: 2px; font-weight: 500;
     }
     .row-notes {
+      font-family: var(--font-serif);
       font-size: 12px; color: var(--text-secondary);
-      max-width: 200px;
+      max-width: 200px; font-style: italic;
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
       overflow: hidden;
     }
-    .row-date { font-size: 12px; color: var(--text-muted); white-space: nowrap; }
+    .row-date { font-size: 11px; color: var(--text-muted); white-space: nowrap; }
 
     .empty-state {
-      text-align: center;
-      padding: 48px; color: var(--text-muted);
-    }
-
-    /* --- EXPANDED ROW --- */
-    .expanded-info {
-      background: #F8FAFC;
-      border-radius: 0 0 10px 10px;
-    }
-    .expanded-info td {
-      padding: 16px 20px;
-      font-size: 13px; color: var(--text-secondary);
-      line-height: 1.6;
+      text-align: center; padding: 48px;
+      color: var(--text-muted);
+      font-family: var(--font-serif); font-style: italic;
     }
 
     /* --- RESPONSIVE --- */
     @media (max-width: 768px) {
       .hide-mobile { display: none !important; }
-      .collection-table td, .collection-table th { padding: 8px 6px; font-size: 13px; }
+      .collection-table td, .collection-table th { padding: 10px 8px; font-size: 12px; }
       .row-cover { width: 36px; height: 50px; }
       .content-section { padding: 16px 12px 48px; }
       .stats-section, .tabs-section { padding-left: 12px; padding-right: 12px; }
+      .nav-inner { padding: 0 16px; }
     }
   </style>
 </head>
 <body>
-  <!-- NAV -->
   <nav>
     <div class="nav-inner">
       <a href="/" class="nav-brand">
-        <div class="nav-logo">M</div>
-        <span class="nav-title">漫坑選物</span>
+        <span class="nav-logo">漫坑選物</span>
+        <span class="nav-divider"></span>
+        <span class="nav-sub">Manga Select</span>
       </a>
       <div class="nav-links">
-        <a href="/">推薦頁</a>
-        <a href="/collection.html" class="active">私人書架</a>
+        <a href="/">Public</a>
+        <a href="/collection.html" class="active">Private</a>
       </div>
     </div>
   </nav>
 
-  <!-- STATS -->
   <div class="stats-section">
     <div class="stats-grid" id="stats-grid"></div>
   </div>
 
-  <!-- TABS -->
   <div class="tabs-section">
     <div class="tabs" id="tabs"></div>
   </div>
 
-  <!-- COLLECTION TABLE -->
   <div class="content-section">
     <div class="filter-bar">
-      <input type="text" class="search-input" id="search" placeholder="搜尋漫畫名稱或作者...">
+      <input type="text" class="search-input" id="search" placeholder="Search title or author...">
       <select class="sort-select" id="sort">
-        <option value="rating">依評分</option>
-        <option value="dateAdded">依新增日期</option>
-        <option value="title">依名稱</option>
-        <option value="status">依狀態</option>
+        <option value="rating">By Rating</option>
+        <option value="dateAdded">By Date</option>
+        <option value="title">By Title</option>
+        <option value="status">By Status</option>
       </select>
     </div>
     <table class="collection-table">
       <thead>
         <tr>
-          <th>漫畫</th>
-          <th>評分</th>
-          <th class="hide-mobile">類型</th>
-          <th>狀態</th>
-          <th class="hide-mobile">進度</th>
-          <th class="hide-mobile">備註</th>
-          <th class="hide-mobile">新增日期</th>
+          <th>Title</th>
+          <th>Rating</th>
+          <th class="hide-mobile">Genre</th>
+          <th>Status</th>
+          <th class="hide-mobile">Progress</th>
+          <th class="hide-mobile">Notes</th>
+          <th class="hide-mobile">Added</th>
         </tr>
       </thead>
       <tbody id="table-body"></tbody>
     </table>
-    <div class="empty-state" id="empty" style="display:none;">沒有找到符合條件的漫畫</div>
+    <div class="empty-state" id="empty" style="display:none;">No manga found.</div>
   </div>
 
   <script>
     let DATA = null;
     let activeTab = 'all';
     const GENRE_COLORS = {};
-    const STATUS_MAP = {
-      reading: '在讀',
-      completed: '完讀',
-      'want-to-read': '想讀',
-      dropped: '棄坑',
-    };
+    const STATUS_MAP = { reading: '在讀', completed: '完讀', 'want-to-read': '想讀', dropped: '棄坑' };
     const PLACEHOLDER_GRADIENTS = [
-      'linear-gradient(135deg, #E63946, #F97316)',
-      'linear-gradient(135deg, #3B82F6, #8B5CF6)',
-      'linear-gradient(135deg, #10B981, #06B6D4)',
-      'linear-gradient(135deg, #8B5CF6, #EC4899)',
+      'linear-gradient(145deg, #C23B22, #D97706)',
+      'linear-gradient(145deg, #1E293B, #475569)',
+      'linear-gradient(145deg, #6366F1, #8B5CF6)',
+      'linear-gradient(145deg, #059669, #0D9488)',
     ];
 
     function getGradient(id) {
@@ -358,32 +354,26 @@
       const reading = all.filter(m => m.readingStatus === 'reading').length;
       const wantToRead = all.filter(m => m.readingStatus === 'want-to-read').length;
       const avgRating = all.length ? (all.reduce((s, m) => s + m.rating, 0) / all.length).toFixed(1) : 0;
-
-      // Most read genre
       const genreCount = {};
       all.forEach(m => m.genres.forEach(g => { genreCount[g] = (genreCount[g] || 0) + 1; }));
       const topGenre = Object.entries(genreCount).sort((a, b) => b[1] - a[1])[0];
 
       document.getElementById('stats-grid').innerHTML = `
-        <div class="stat-card"><div class="stat-value">${all.length}</div><div class="stat-label">總收藏</div></div>
-        <div class="stat-card"><div class="stat-value accent">${reading}</div><div class="stat-label">在讀</div></div>
-        <div class="stat-card"><div class="stat-value">${completed}</div><div class="stat-label">完讀</div></div>
-        <div class="stat-card"><div class="stat-value">${wantToRead}</div><div class="stat-label">想讀</div></div>
-        <div class="stat-card"><div class="stat-value">${avgRating}</div><div class="stat-label">平均評分</div></div>
-        <div class="stat-card"><div class="stat-value" style="font-size:18px">${topGenre ? topGenre[0] : '-'}</div><div class="stat-label">最愛類型</div></div>
+        <div class="stat-card"><div class="stat-value">${all.length}</div><div class="stat-label">Total</div></div>
+        <div class="stat-card"><div class="stat-value accent">${reading}</div><div class="stat-label">Reading</div></div>
+        <div class="stat-card"><div class="stat-value">${completed}</div><div class="stat-label">Done</div></div>
+        <div class="stat-card"><div class="stat-value">${wantToRead}</div><div class="stat-label">Wishlist</div></div>
+        <div class="stat-card"><div class="stat-value">${avgRating}</div><div class="stat-label">Avg Rating</div></div>
+        <div class="stat-card"><div class="stat-value" style="font-size:16px">${topGenre ? topGenre[0] : '-'}</div><div class="stat-label">Top Genre</div></div>
       `;
     }
 
     function renderTabs() {
       const counts = { all: DATA.manga.length };
-      DATA.manga.forEach(m => {
-        counts[m.readingStatus] = (counts[m.readingStatus] || 0) + 1;
-      });
+      DATA.manga.forEach(m => { counts[m.readingStatus] = (counts[m.readingStatus] || 0) + 1; });
       const tabDefs = [
-        { id: 'all', label: '全部' },
-        { id: 'reading', label: '在讀' },
-        { id: 'completed', label: '完讀' },
-        { id: 'want-to-read', label: '想讀' },
+        { id: 'all', label: '全部' }, { id: 'reading', label: '在讀' },
+        { id: 'completed', label: '完讀' }, { id: 'want-to-read', label: '想讀' },
         { id: 'dropped', label: '棄坑' },
       ];
       document.getElementById('tabs').innerHTML = tabDefs.map(t =>
@@ -396,24 +386,14 @@
     function renderTable() {
       const search = document.getElementById('search').value.toLowerCase();
       const sort = document.getElementById('sort').value;
-
       let manga = [...DATA.manga];
 
-      // Tab filter
-      if (activeTab !== 'all') {
-        manga = manga.filter(m => m.readingStatus === activeTab);
-      }
+      if (activeTab !== 'all') manga = manga.filter(m => m.readingStatus === activeTab);
+      if (search) manga = manga.filter(m =>
+        m.title.toLowerCase().includes(search) ||
+        (m.titleOriginal && m.titleOriginal.toLowerCase().includes(search)) ||
+        m.author.toLowerCase().includes(search));
 
-      // Search filter
-      if (search) {
-        manga = manga.filter(m =>
-          m.title.toLowerCase().includes(search) ||
-          (m.titleOriginal && m.titleOriginal.toLowerCase().includes(search)) ||
-          m.author.toLowerCase().includes(search)
-        );
-      }
-
-      // Sort
       if (sort === 'rating') manga.sort((a, b) => b.rating - a.rating);
       else if (sort === 'dateAdded') manga.sort((a, b) => b.dateAdded.localeCompare(a.dateAdded));
       else if (sort === 'title') manga.sort((a, b) => a.title.localeCompare(b.title, 'zh-TW'));
@@ -425,34 +405,21 @@
       const tbody = document.getElementById('table-body');
       const empty = document.getElementById('empty');
 
-      if (!manga.length) {
-        tbody.innerHTML = '';
-        empty.style.display = '';
-        return;
-      }
+      if (!manga.length) { tbody.innerHTML = ''; empty.style.display = ''; return; }
       empty.style.display = 'none';
 
       tbody.innerHTML = manga.map(m => {
         const coverHTML = m.coverUrl
           ? `<img src="${m.coverUrl}" alt="${m.title}" loading="lazy">`
           : `<div class="row-cover-placeholder" style="background:${getGradient(m.id)}">${m.title.slice(0, 2)}</div>`;
-
         const tagsHTML = m.genres.map(g => {
           const color = GENRE_COLORS[g] || '#94A3B8';
-          return `<span class="row-tag" style="background:${color}15;color:${color}">${g}</span>`;
+          return `<span class="row-tag" style="background:${color}10;color:${color}">${g}</span>`;
         }).join('');
 
         return `
           <tr>
-            <td>
-              <div class="row-title-cell">
-                <div class="row-cover">${coverHTML}</div>
-                <div>
-                  <div class="row-title">${m.title}</div>
-                  <div class="row-original">${m.author}</div>
-                </div>
-              </div>
-            </td>
+            <td><div class="row-title-cell"><div class="row-cover">${coverHTML}</div><div><div class="row-title">${m.title}</div><div class="row-original">${m.author}</div></div></div></td>
             <td><span class="row-stars">${stars(m.rating)}</span></td>
             <td class="hide-mobile"><div class="row-tags">${tagsHTML}</div></td>
             <td><span class="row-status ${m.readingStatus}">${STATUS_MAP[m.readingStatus] || m.readingStatus}</span></td>
@@ -465,12 +432,9 @@
 
     function renderAll() {
       DATA.genres.forEach(g => { GENRE_COLORS[g.label] = g.color; });
-      renderStats();
-      renderTabs();
-      renderTable();
+      renderStats(); renderTabs(); renderTable();
     }
 
-    // Event listeners
     document.getElementById('tabs').addEventListener('click', e => {
       const tab = e.target.closest('.tab');
       if (!tab) return;
@@ -483,15 +447,10 @@
     document.getElementById('search').addEventListener('input', renderTable);
     document.getElementById('sort').addEventListener('change', renderTable);
 
-    // Load data
     fetch('./data.json')
       .then(r => r.json())
       .then(data => { DATA = data; renderAll(); })
-      .catch(err => {
-        console.error('Failed to load data:', err);
-        document.getElementById('empty').textContent = '資料載入失敗';
-        document.getElementById('empty').style.display = '';
-      });
+      .catch(err => { console.error(err); document.getElementById('empty').style.display = ''; });
   </script>
 </body>
 </html>
